@@ -1,4 +1,4 @@
-import {cart} from '../data/cart.js';
+import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 
 // This will store ALL the HTML for every product as one big string
@@ -81,47 +81,28 @@ products.forEach((product) => {
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 
+function updateCartQuantity (){
+   // Calculate total quantity in cart
+    let cartQuantity = 0;
+
+    cart.forEach((cartItem) => {
+      cartQuantity += cartItem.quantity; // add each item's quantity
+    });
+
+    // Update cart number in the UI
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
 
 // Select ALL "Add to Cart" buttons
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
   // Add click event to EACH button
   button.addEventListener('click', () => {
-
     // Get the product ID from the button's data attribute
     // IMPORTANT: should be dataset.productId (not dataset.Id)
     const productId = button.dataset.productId;
+    addToCart(productId);
+    updateCartQuantity();
 
-    // This will store the matching item if it exists in the cart
-    let matchingItem;
-
-    // Loop through cart to check if product already exists
-    cart.forEach((item) => {
-      if (productId === item.productId) {
-        matchingItem = item; // found existing item
-      }
-    });
-
-    // If product already in cart → increase quantity
-    if (matchingItem) {
-      matchingItem.quantity += 1;
-
-    } else {
-      // If not in cart → add new item
-      cart.push({
-        productId: productId,
-        quantity: 1
-      });
-    }
-
-    // Calculate total quantity in cart
-    let cartQuantity = 0;
-
-    cart.forEach((item) => {
-      cartQuantity += item.quantity; // add each item's quantity
-    });
-
-    // Update cart number in the UI
-    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
   });
 });
