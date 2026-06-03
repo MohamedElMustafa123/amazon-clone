@@ -1,5 +1,5 @@
 //this is called a data structure, we use a combination of objects and arrays to create a data structure
-const products = [
+export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",

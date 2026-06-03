@@ -1,4 +1,5 @@
 import {cart} from '../data/cart.js';
+import {products} from '../data/products.js';
 
 // This will store ALL the HTML for every product as one big string
 // We start empty and keep adding to it inside the loop
