@@ -1,5 +1,6 @@
 import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
+import { formatCurrency } from './utils/money.js';
 
 // This will store ALL the HTML for every product as one big string
 // We start empty and keep adding to it inside the loop
@@ -37,7 +38,7 @@ products.forEach((product) => {
 
       <!-- Product price -->
       <div class="product-price">
-        ${(product.priceCents / 100).toFixed(2)}
+        $${formatCurrency(product.priceCents)}
         <!-- convert cents → dollars and always show 2 decimal places -->
       </div>
 
