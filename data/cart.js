@@ -59,3 +59,19 @@ export function removeFromCart(productId){
 
   saveToStorage();
 }
+
+
+export function updateDeliveryOption (productId, deliveryOptionId) {
+    let matchingItem;
+
+  // Loop through cart to check if product already exists
+  cart.forEach((cartItem) => {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem; // found existing item
+    }
+  });
+
+  matchingItem.deliveryOptionId = deliveryOptionId;
+
+  saveToStorage();
+} 
