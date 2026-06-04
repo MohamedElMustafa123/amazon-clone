@@ -1,3 +1,18 @@
+export function getProduct(productId){
+  let matchingProduct;
+
+    products.forEach((product) => {
+
+      if(product.id === productId){
+        matchingProduct = product;
+      }
+
+    });
+
+    return matchingProduct
+}
+
+
 //this is called a data structure, we use a combination of objects and arrays to create a data structure
 export const products = [
   {
