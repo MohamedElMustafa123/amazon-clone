@@ -37,8 +37,30 @@ class Product {
     return `$${formatCurrency(this.priceCents)}`;
 
   }
+
+  extraInfoHTML(){
+    return '';
+  }
 }
 
+class Clothing extends Product{
+  sizeChartLink;
+
+  constructor(productDetails){
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML () { //method overiding
+    //super.extraInfoHTML() //this calls on of the parents method
+    return `
+    <a href="${this.sizeChartLink}" target="_blank">
+      Size chart
+    </a>
+    `;
+  }
+
+}
 
 
 //this is called a data structure, we use a combination of objects and arrays to create a data structure
@@ -86,7 +108,7 @@ export const products = [
       "apparel",
       "mens"
     ],
-    type: "clothing",
+    type: "clothing", //discriminator property
     sizeChartLink: "images/clothing-size-chart.png"
   },
   {
@@ -702,5 +724,9 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+  if (productDetails.type === 'clothing'){
+    return new Clothing(productDetails);
+  }
+
   return new Product(productDetails);
 });
