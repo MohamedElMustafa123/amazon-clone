@@ -28,7 +28,7 @@ products.forEach((product) => {
       <!-- Product rating -->
       <div class="product-rating-container">
         <img class="product-rating-stars"
-          src="images/ratings/rating-${product.rating.stars * 10}.png">
+          src=${product.getStarsUrl()}>
           <!-- stars * 10 converts 4.5 → 45 (used in file name) -->
 
         <div class="product-rating-count link-primary">
@@ -38,7 +38,7 @@ products.forEach((product) => {
 
       <!-- Product price -->
       <div class="product-price">
-        $${formatCurrency(product.priceCents)}
+        ${product.getPrice()}
         <!-- convert cents → dollars and always show 2 decimal places -->
       </div>
 
